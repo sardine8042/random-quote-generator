@@ -2,16 +2,17 @@
 
 ## Introduction
 
-Your task is to build a backend application that acts as a RESTful API Server for displaying random quotes. 
+Your task is to build a backend application that acts as a RESTful API Server for displaying random quotes.
 
 The application should be written using [NestJS](https://nestjs.com/), [TypeScript](https://www.typescriptlang.org/), [TypeORM](https://typeorm.io), and [SQLite](https://www.sqlite.org)
 
 ## Getting Started
 
-The NestJS starter code and [quotes file](https://github.com/VioletLabsInc/random-quote-generator/blob/master/src/data/office_quotes.json) can be found in our random-quote-generator GitHub repository. 
+The NestJS starter code and [quotes file](https://github.com/VioletLabsInc/random-quote-generator/blob/master/src/data/office_quotes.json) can be found in our random-quote-generator GitHub repository.
 The [NestJS First Steps](https://docs.nestjs.com/first-steps) documents are a great launching point to begin building this.
 
 ## What We Expect From You
+
 1. Create an application that creates and uses a RESTful API to retrieve and display a random quote from the given [office-quotes](https://github.com/VioletLabsInc/random-quote-generator/blob/master/src/data/office_quotes.json) dataset. This application does not need to be deployed or hosted anywhere- just something you can run locally.
 2. Add tests to your newly created application.
 3. Add any additional feature of your choice.
