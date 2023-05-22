@@ -1,26 +1,38 @@
 import { Injectable } from "@nestjs/common";
-import { CreateQuoteDto } from "./dto/create-quote.dto";
-import { UpdateQuoteDto } from "./dto/update-quote.dto";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { QuoteRequestDto } from "./dto/quote-request.dto";
+import { QuoteResponseDto } from "./dto/quote-response.dto";
+import { Quote } from "./entities/quote.entity";
 
 @Injectable()
 export class QuotesService {
-  create(createQuoteDto: CreateQuoteDto) {
-    return "This action adds a new quote";
+  constructor(
+    @InjectRepository(Quote)
+    private quotesRepository: Repository<Quote>
+  ) {}
+
+  create(quote: QuoteRequestDto): Promise<QuoteResponseDto> {
+    return this.quotesRepository.save(quote);
   }
 
-  findAll() {
-    return `This action returns all quotes`;
+  findAll(): Promise<QuoteResponseDto[]> {
+    return this.quotesRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} quote`;
+  findRandom(): Promise<QuoteResponseDto> {
+    return this.quotesRepository
+      .createQueryBuilder()
+      .select("quotes.quote_id")
+      .from(Quote, "quotes")
+      .orderBy("RANDOM()")
+      .limit(1)
+      .getOne();
   }
 
-  update(id: number, updateQuoteDto: UpdateQuoteDto) {
-    return `This action updates a #${id} quote`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} quote`;
+  findOne(quote_id: number): Promise<QuoteResponseDto> {
+    return this.quotesRepository.findOneBy({
+      quote_id: quote_id,
+    });
   }
 }
